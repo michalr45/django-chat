@@ -1,0 +1,48 @@
+{% extends 'chat/base.html' %}
+
+{% block content %}
+
+    <div class="content">
+        <h2>You can join an existing room:</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <p class="form-label">{{ form.name.label }}:</p>
+                <p>{{ form.name }}</p>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">{{ form.password.label }}:</p>
+                <p>{{ form.password }}</p>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+        <h3>or <a href="{% url 'chat:create_room' %}">create a new room</a></h3>
+    </div>
+
+
+<style>
+
+    .content{
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content form{
+        width: 100%;
+        align-self: center;
+        padding: 30px;
+    }
+
+        .content form input[type=text], input[type=password]{
+        width: 90%;
+    }
+
+</style>
+
+{% endblock %}
+

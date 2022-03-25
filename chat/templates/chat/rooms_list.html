@@ -1,0 +1,50 @@
+{% extends 'chat/base.html' %}
+
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <th scope="col">name</th>
+            <th scope="col">password</th>
+        </tr>
+        {% for room in rooms %}
+            <tr>
+                <td class="td-name">{{ room.name }}</td>
+                <td><span id="password-{{ room.uuid }}"></span><span id="show-{{ room.uuid }}" class="show">show password</span></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
+
+<style>
+    .table{
+        position: absolute;
+        width: 50%;
+        top: 15%;
+        right: 30%;
+    }
+    .show{
+        cursor: pointer;
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+     {% for room in rooms %}
+        document.querySelector('#show-{{ room.uuid }}').addEventListener('click', function (){
+            let password = document.querySelector('#password-{{ room.uuid }}');
+            let showPassword = document.querySelector('#show-{{ room.uuid }}');
+
+            if (password.innerText === ''){
+                password.textContent = '{{ room.password }} \u00A0\u00A0\ ';
+                showPassword.textContent = 'hide';
+            } else {
+                password.textContent = '';
+                showPassword.textContent = 'show password';
+            }
+
+        })
+    {% endfor %}
+</script>
+{% endblock %}

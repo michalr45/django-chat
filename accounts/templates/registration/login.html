@@ -1,0 +1,17 @@
+{% extends "auth_layout.html" %}
+
+
+{% block content %}
+    <header>
+        <div class="header-text">
+            <h1>Log in</h1>
+            <p>If you don't have an account yet, <a href="{% url 'accounts:register' %}">you can register here</a></p>
+        </div>
+    </header>
+
+    <form action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Log in" class="submit-button">
+    </form>
+{% endblock %}

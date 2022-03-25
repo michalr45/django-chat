@@ -1,0 +1,16 @@
+{% extends "auth_layout.html" %}
+
+{% block content %}
+    <header>
+        <div class="header-text">
+            <h1>Register</h1>
+            <p>If you already have an account, <a href="{% url 'accounts:login' %}">you can login here</a></p>
+        </div>
+    </header>
+
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <p><input type="submit" value="Create an account" class="submit-button"></p>
+    </form>
+{% endblock %}
