@@ -1,7 +1,7 @@
 
 # django-chat
 
-Simple django-based video and text chat
+Simple django based video and text chat web app
 
 ## Features
 
