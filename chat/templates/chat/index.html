@@ -18,7 +18,11 @@
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </form>
-        <h3>or <a href="{% url 'chat:create_room' %}">create a new room</a></h3>
+        {% if user.is_authenticated %}
+            <h3>or <a href="{% url 'chat:create_room' %}">create a new room</a></h3>
+        {% else %}
+            <h3>or <a href="{% url 'accounts:login' %}">log in</a> to create a new room</h3>
+        {% endif %}
     </div>
 
 

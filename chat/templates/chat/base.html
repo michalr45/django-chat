@@ -15,15 +15,15 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">DjangoChat</a>
-        <a class="-nav-link" href="{% url 'chat:index' %}">Home</a>
         <div class="d-flex">
-        <span class="nav-link time">{%  now  'l, d.m.o' %}</span>
-        {% if user.is_authenticated %}
-            <a class="nav-link link" href="{% url 'chat:rooms_list' %}">My rooms</a><br>
-            <a class="nav-link link" href="{% url 'accounts:logout' %}">Logout</a><br>
-        {% else %}
-            <a class="nav-link link" href="{% url 'accounts:login' %}">Login</a><br>
-        {% endif %}
+            <span class="nav-link time">{%  now  'l, d.m.o' %}</span>
+            <a class="nav-link link home" href="{% url 'chat:index' %}">Home</a>
+            {% if user.is_authenticated %}
+                <a class="nav-link link" href="{% url 'chat:rooms_list' %}">My rooms</a><br>
+                <a class="nav-link link" href="{% url 'accounts:logout' %}">Logout</a><br>
+            {% else %}
+                <a class="nav-link link" href="{% url 'accounts:login' %}">Login</a><br>
+            {% endif %}
         </div>
     </div>
 </nav>
@@ -32,6 +32,12 @@
 {% endblock %}
 
 <style>
+    .container-fluid{
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+
     .time{
         color: black;
     }

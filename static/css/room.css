@@ -1,0 +1,95 @@
+html {
+    height: 100vh;
+    width: 100vw;
+}
+
+.video-chat {
+    position: absolute;
+    left: 0.5%;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.video-container {
+    margin-right: 10px;
+    height: 50%;
+    width: 45%;
+    border: 3px solid black;
+}
+
+.video-player {
+    height: 100%;
+    width: 100%;
+}
+
+.video-controls {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background: transparent;
+}
+
+.icon {
+    margin-left: 60px;
+    margin-right: 60px;
+    cursor: pointer;
+}
+
+.icon i {
+    font-size: 2.5em;
+    color: green;
+}
+
+.chat {
+    position: absolute;
+    right: 0.5%;
+    width: 27%;
+    height: 80%;
+}
+
+.chatbox {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+}
+
+.controls input[type=text] {
+    width: 80%;
+}
+
+.controls input[type=button] {
+    width: 19%;
+    margin-left: 1%;
+}
+
+.user {
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+.message {
+    margin-left: 10px;
+    font-size: 16px;
+}

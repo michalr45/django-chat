@@ -1,57 +1,50 @@
-<!-- chat/templates/chat/room.html -->
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ room_name }}</title>
+    <script src="https://kit.fontawesome.com/49b5438e0f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/room.css' %}">
 </head>
 <body>
-    {{ room_name|json_script:"room-name" }}
+{{ room_name|json_script:"room-name" }}
+{{ token|json_script:"token" }}
+{{ uid|json_script:"uid" }}
+{{ app_id|json_script:"app_id" }}
 
-    <h2>{{ room_name }}</h2>
+<h2>{{ room_name }}</h2>
 
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
+<div class="video-chat">
 
-
-    <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
-        submitButton = document.querySelector('#chat-message-submit');
-        chatInput = document.querySelector('#chat-message-input');
-
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/chat/'
-            + roomName
-            + '/'
-        );
-
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.username + '\n' + data.message + '\n');
-        };
-
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
-        };
-
-        chatInput.focus();
-        chatInput.onkeyup = function(e) {
-            if (e.key === 'Enter') {
-                submitButton.click();
-            }
-        };
+    <div class="video-controls">
+        <div class="icon" id="leave-btn" >
+            <i class="fas fa-times-circle"></i>
+        </div>
+        <div class="icon" id="microphone-btn" >
+            <i class="fas fa-microphone"></i>
+        </div>
+        <div class="icon" id="camera-btn">
+            <i class="fas fa-camera"></i>
+        </div>
+    </div>
+</div>
 
 
-        submitButton.onclick = function(e) {
-            const message = chatInput.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            chatInput.value = '';
-        };
-    </script>
+<div class="chat">
+    <div class="chatbox">
+
+    </div>
+    <div class="controls">
+        <input id="chat-message-input" type="text">
+        <input id="chat-message-submit" type="button" value="Send">
+    </div>
+    <p class="error"></p>
+</div>
+
+
+<script type="text/javascript" src="{% static 'js/AgoraRTC_N-4.11.0.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/room.js' %}"></script>
 </body>
 </html>

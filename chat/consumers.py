@@ -1,4 +1,5 @@
 import json
+import random
 from channels.generic.websocket import AsyncWebsocketConsumer
 
 
@@ -6,7 +7,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.username = self.scope['user'].username
+        if self.scope['user'].username:
+            self.username = self.scope['user'].username
+        else:
+            self.username = f'user{random.randint(100, 999)} (anonymous)'
         self.room_group_name = 'chat_%s' % self.room_name
 
         # Join room group
